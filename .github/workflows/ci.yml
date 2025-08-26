@@ -25,7 +25,7 @@ jobs:
         run: python src/githubClient/v3/main.py
 
       - name: Deploy datasets hugging face
-        run: echo implementar aqui deploy dataset v3
+        run: echo implementar aqui deploy dataset v3 - ${{ secrets.GITLAB_TOKEN }}
 
   load-dataset-v4:
     name: Caregar API V4 Github

@@ -11,7 +11,7 @@ on:
 
 jobs:
   load-dataset-v3:
-    name: Caregar dataset from Github API v3
+    name: Caregar API V3 Github
     runs-on: ubuntu-latest
     container: python:3.11
 
@@ -28,7 +28,7 @@ jobs:
         run: echo implementar aqui deploy dataset v3
 
   load-dataset-v4:
-    name: Caregar dataset from Github API v4
+    name: Caregar API V4 Github
     runs-on: ubuntu-latest
     container: python:3.11
 
@@ -48,6 +48,7 @@ jobs:
     name: Deploy IA
     runs-on: ubuntu-latest
     container: python:3.11
+    if: ${{ github.event_name == 'workflow_dispatch' }} # só roda quando acionado manualmente
 
     steps:
       - name: Publicando modelo no space hugging face

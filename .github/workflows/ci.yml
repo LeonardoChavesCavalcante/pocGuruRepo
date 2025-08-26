@@ -1,14 +1,14 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Pipeline xxxx
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
+  loadDataset-v1:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -34,3 +34,58 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+name: Pipeline com dois jobs Python (Docker)
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+  # Permitir execução manual do job
+  workflow_dispatch:
+
+jobs:
+  load-dataset-v3:
+    name: Caregar dataset from Github API v3
+    runs-on: ubuntu-latest
+    container: python:3.11 
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Executar busca de dados na API Github
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: python src/githubClient/v3/main.py
+
+      - name: Deploy datasets hugging face
+        run: echo implementar aqui deploy dataset v3
+
+  load-dataset-v4:
+    name: Caregar dataset from Github API v4
+    runs-on: ubuntu-latest
+    container: python:3.11 
+
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Executar busca de dados na API Github
+        env:
+          GITLAB_TOKEN: ${{ secrets.GITLAB_TOKEN }}
+        run: python src/githubClient/v3/main.py
+
+      - name: Deploy datasets hugging face
+        run: echo implementar aqui deploy dataset v4
+
+  deploy-IA:
+    name: Deploy IA
+    runs-on: ubuntu-latest
+    container: python:3.11 
+
+    steps:
+      - name: Publicando modelo no space hugging face
+        run: echo implmentar publicação do modelo no huggin face aqui

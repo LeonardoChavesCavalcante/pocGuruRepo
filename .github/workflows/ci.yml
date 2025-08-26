@@ -16,6 +16,9 @@ jobs:
     container: python:3.11
 
     steps:
+    - name: TESTE
+      run: echo implementar aqui deploy dataset v3 - ${{ secrets.GIT_API_TOKEN }}
+
       - name: Checkout do código
         uses: actions/checkout@v4
 

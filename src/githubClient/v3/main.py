@@ -10,4 +10,4 @@ import os
 #Utilizar o token desta forma
 PRIVATE_TOKEN = os.getenv("GITLAB_TOKEN") 
 
-print("Hello, GuroRepo! Github API V3" )
+print("Hello, GuroRepo! Github API V3 " + PRIVATE_TOKEN  )

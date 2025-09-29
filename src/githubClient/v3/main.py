@@ -8,6 +8,6 @@
 import os
 
 #Utilizar o token desta forma
-PRIVATE_TOKEN = os.getenv("secrets.GIT_API_TOKEN") 
+PRIVATE_TOKEN = os.getenv("GIT_API_TOKEN") 
 
-print("Hello, GuroRepo! Github API V3 = " + PRIVATE_TOKEN  )
+print("Hello, GuroRepo! Github API V3 "  )

@@ -1,0 +1,7 @@
+datasets
+transformers
+sentence-transformers
+faiss-cpu
+huggingface-hub
+requests
+json

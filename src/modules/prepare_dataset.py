@@ -2,7 +2,14 @@ from datasets import Dataset
 import json
 import os
 
-def prepare_dataset(json_path: str):
+def prepare_dataset(json_path: str, cache_path: str = "dataset_cache"):
+    
+    # Se o dataset já foi salvo antes, carrega direto
+    if os.path.exists(cache_path):
+        print(f"Carregando dataset do cache: {cache_path}")
+        return Dataset.load_from_disk(cache_path)
+
+    # Senão, cria o dataset a partir do JSON
     with open(json_path, "r", encoding="utf-8") as f:
         data = json.load(f)
 
@@ -47,4 +54,9 @@ def prepare_dataset(json_path: str):
         })
 
     dataset = Dataset.from_list(records)
+
+    # Salva para reutilização futura
+    dataset.save_to_disk(cache_path)
+    print(f"Dataset salvo em: {cache_path}")
+
     return dataset

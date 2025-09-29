@@ -20,10 +20,14 @@ def main():
         "Quais commits foram feitos em agosto de 2025?"
     ]
 
-    for i, pergunta in enumerate(perguntas, 1):
+
+    for pergunta in perguntas:
         resposta = rag_answer(pergunta, embedder, index, documents)
-        print( perguntas[i]);
-        print(f"Exemplo {i}: {resposta}")
+        print(f"========================================================")        
+        print(f"{pergunta}?")
+        print(f"")        
+        print(f"{resposta}")
+        print(f"========================================================")
 
 if __name__ == "__main__":
     main()
